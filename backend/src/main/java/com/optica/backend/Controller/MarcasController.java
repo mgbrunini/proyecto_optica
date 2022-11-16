@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.optica.backend.Controller;
 
 import com.optica.backend.Dto.MarcasDto;
@@ -38,7 +34,7 @@ public class MarcasController {
         return new ResponseEntity(marcas, HttpStatus.OK);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/marcas/delete/{id}")
     public void delete(@PathVariable("id") int id) {
         marcasService.delete(id);
     }
@@ -48,10 +44,11 @@ public class MarcasController {
     public ResponseEntity<?> create(@RequestBody MarcasDto marcasDto) {
         Marcas marca = new Marcas(marcasDto.getNombre());
         
+        marcasService.save(marca);
         return new ResponseEntity("Marca registrada", HttpStatus.OK);
     }
 
-    @PutMapping("/clientes/{id}")
+    @PutMapping("/marcas/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody MarcasDto marcasDto) {
         Marcas marcas = marcasService.getOne(id).get();
         marcas.setNombre(marcasDto.getNombre());

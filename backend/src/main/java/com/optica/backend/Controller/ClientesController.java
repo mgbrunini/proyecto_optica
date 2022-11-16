@@ -39,7 +39,7 @@ public class ClientesController {
         return new ResponseEntity(clientes, HttpStatus.OK);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/clientes/delete/{id}")
     public void delete(@PathVariable("id") int id) {
         clienteService.delete(id);
     }
@@ -54,7 +54,7 @@ public class ClientesController {
                                         clientesDto.getOjoDerecho(),
                                         clientesDto.getOjoIzquierdo());
         
-        clientes.setMarcas();
+        marcasDto.setClientes((List<Clientes>) clientes);
         
         clienteService.save(clientes);
         
